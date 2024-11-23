@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #f4f2e1;
+  width: 100%;
+  overflow-x: hidden;
+}
+header,
+nav,
+footer {
+  background-color: #f0b941;
+  color: white;
+}
+nav img {
+  width: 50px;
+  height: 50px;
+  border-radius: 80%;
+  display: flex;
+}
+header {
+  padding: 1rem;
+  text-align: center;
+  margin: 0;
+}
+header h1 {
+  font-size: 1.5rem;
+}
+h1 {
+  color: #222c6f;
+  text-align: center;
+  font-size: 70px;
+  padding: 0;
+  margin: 10px;
+}
+
+nav {
+  padding: 0.5rem;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+footer {
+  background-color: #e7c886;
+  color: black;
+}
+footer h4 {
+  padding: 10px 0 5px 10px;
+}
+footer ul {
+  list-style: none;
+  padding: 5px 0 5px 17px;
+}
+footer a {
+  text-decoration: none;
+  color: black;
+}
+footer p {
+  padding: 5px 0 5px 10px;
+}
+span {
+  font-weight: 700;
+}
+div button {
+  display: grid;
+  place-items: center;
+}
+button#btn-pro {
+  border-radius: 15px;
+  width: 330px;
+  height: 50px;
+  padding: 8px;
+  margin: 70px auto;
+  font-size: 18px;
+  background-color: #f0b941;
+  border: none;
+  font-weight: 600;
+}
+button#btn-pro:hover {
+  background-color: #e7c886;
+}
+button a {
+  text-decoration: none;
+  color: black;
+}
+.productRow {
+  width: 90%;
+  max-width: 300px;
+  height: 375px;
+  display: inline-block;
+  place-items: center;
+  margin: 20px auto;
+  background-color: #ffffff;
+  box-shadow: 4px 10px 15px 5px;
+  border-radius: 40px;
+  text-align: center;
+  position: relative;
+  text-decoration: transparent;
+  transition-duration: 300ms;
+}
+.productRow:hover {
+  opacity: 0.5;
+}
+.productRow p:hover {
+  font-weight: 800;
+  text-decoration: white;
+}
+.information {
+  font-weight: 700;
+}
+.product-img {
+  display: flex;
+  border-radius: 25px;
+  margin: 25px;
+  padding: 0;
+  margin-bottom: 5px;
+  height: 260px;
+  place-items: center;
+  object-position: center;
+}
+
+@media (min-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    gap: 0.5rem;
+  }
+
+  .productRow {
+    display: inline-block;
+    place-items: center;
+    margin: 50px 30px 5px 130px;
+    background-color: #ffffff;
+    box-shadow: 4px 10px 15px 5px;
+    border-radius: 40px;
+    text-align: center;
+    position: relative;
+    text-decoration: transparent;
+    transition-duration: 300ms;
+  }
+  #div-modal {
+    width: 50%;
+  }
+  #btn-detail {
+    width: 100%;
+  }
+  #img-modal {
+    width: 100%;
+  }
+  #img-inicio {
+    width: 505;
+  }
+  #nov img {
+    width: 70%;
+    height: 70%;
+  }
+}
+
+@media (max-width: 800px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav ul {
+    flex-direction: flex;
+  }
+
+  .productRow {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+  #div-modal {
+    width: 100%;
+  }
+  #btn-detail {
+    width: 50%;
+  }
+  #img-modal {
+    width: 50%;
+  }
+  #img-inicio {
+    width: 100%;
+  }
+  #nov img {
+    width: 100%;
+    height: 100%;
+  }
+}

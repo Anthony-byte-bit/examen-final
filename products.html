@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Productos</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" src="component.common.js"></script>
+    <script type="text/babel" src="filter.js"></script>
+    <script type="text/babel" src="script.card.js"></script>
+    <script type="text/babel" src="modal.js"></script>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            cardsData: [],
+            filter: "all",
+            isModalOpen: false,
+            selectedProduct: null,
+          };
+        }
+
+        componentDidMount() {
+          fetch("data.json")
+            .then((response) => response.json())
+            .then((data) => {
+              this.setState({ cardsData: data });
+            })
+            .catch((error) => console.error("Hay un error", error));
+        }
+
+        handleFilterChange = (category) => {
+          this.setState({ filter: category });
+        };
+
+        handleOpenModal = (product) => {
+          this.setState({
+            isModalOpen: true,
+            selectedProduct: product,
+          });
+        };
+
+        handleCloseModal = () => {
+          this.setState({
+            isModalOpen: false,
+            selectedProduct: null,
+          });
+        };
+
+        render() {
+          const { cardsData, filter, isModalOpen, selectedProduct } =
+            this.state;
+
+          const filteredCards = cardsData.filter((card) => {
+            return filter === "all" || card.category === filter;
+          });
+
+          return (
+            <div>
+              <Navigation />
+              <h1 className="mt-4 text-blue-700 text-4xl font-bold">
+                Categorías
+              </h1>
+              <div className="flex justify-center mt-0">
+                <Filter onFilterChange={this.handleFilterChange} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                {filteredCards.map((card, index) => (
+                  <Card
+                    key={index}
+                    src={card.src}
+                    title={card.title}
+                    description={card.description}
+                    price={card.price}
+                    category={card.category}
+                    onOpenModal={this.handleOpenModal}
+                  />
+                ))}
+              </div>
+              <Modal
+                isOpen={isModalOpen}
+                onClose={this.handleCloseModal}
+                product={selectedProduct}
+              />
+              <div className="flex-grow mt-9"></div>
+              <Footer />
+            </div>
+          );
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
